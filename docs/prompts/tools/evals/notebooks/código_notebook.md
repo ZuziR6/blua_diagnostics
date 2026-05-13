@@ -1,3 +1,6 @@
+LER EM MODO "CODE", SENÃO NÃO SERÁ POSSÍVEL COPIAR CORRETAMENTE
+
+
 CÉLULA 1 — INSTALAÇÃO
 !pip install openai python-dotenv
 
