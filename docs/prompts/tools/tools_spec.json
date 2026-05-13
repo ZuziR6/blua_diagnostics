@@ -1,1 +1,53 @@
+[
+  {
+    "name": "consultar_historico_paciente",
+    "description": "Consulta o histórico clínico resumido do paciente.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "patient_id": {
+          "type": "string",
+          "description": "ID do paciente"
+        }
+      },
+      "required": ["patient_id"]
+    }
+  },
 
+  {
+    "name": "verificar_interacoes_medicamentosas",
+    "description": "Verifica possíveis interações medicamentosas.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "medicamentos": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Lista de medicamentos"
+        }
+      },
+      "required": ["medicamentos"]
+    }
+  },
+
+  {
+    "name": "agendar_teleconsulta",
+    "description": "Agenda uma teleconsulta para o paciente.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "especialidade": {
+          "type": "string",
+          "description": "Especialidade médica"
+        },
+        "urgencia": {
+          "type": "string",
+          "description": "Nível de urgência"
+        }
+      },
+      "required": ["especialidade", "urgencia"]
+    }
+  }
+]
