@@ -1,9 +1,9 @@
 # BluaDiagnostics
 
 ## Integrantes
-- Nome — RM
-- Nome — RM
-- Nome — RM
+- Gabriel Guimarães de Oliveira — RM 567835
+- Pedro Paulo Ferreira Agnelo D'angelo — RM 567564
+- Nicolas Henriques Fernandes — RM 567123
 
 
 
@@ -141,7 +141,6 @@ blua-diagnostics/
 
 
 
----
 
 # Notebook
 
