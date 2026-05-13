@@ -71,63 +71,47 @@ messages = [
 
 
 CÉLULA 8 — PRIMEIRA INTERAÇÃO
-print(client.models.list())
-
-CÉLULA 8.1
-
-user_input = "Estou com febre e dor de garganta há dois dias."
-
-messages.append({
-    "role": "user",
-    "content": user_input
-})
 
 response = client.chat.completions.create(
     model="gpt-4o-mini",
     messages=messages,
-    tools=tools
+    tools=tools,
+    tool_choice="auto"
 )
 
 assistant_message = response.choices[0].message
-
 messages.append(assistant_message)
 
+print("RESPOSTA:")
 print(assistant_message.content)
 
 
 CÉLULA 9 — CHAMADA DE TOOL
 
-tool_call = {
-    "especialidade": "Clínico Geral",
-    "urgencia": "baixa"
-}
+if assistant_message.tool_calls:
+    for tool_call in assistant_message.tool_calls:
+        if tool_call.function.name == "agendar_teleconsulta":
+            args = json.loads(tool_call.function.arguments)
 
-resultado = agendar_teleconsulta(
-    especialidade=tool_call["especialidade"],
-    urgencia=tool_call["urgencia"]
-)
-print(resultado)
+            resultado = agendar_teleconsulta(
+                especialidade=args["especialidade"],
+                urgencia=args["urgencia"]
+            )
 
+            print("TOOL EXECUTADA:")
+            print(resultado)
 
 CÉLULA 10 — SEGUNDO TURNO
-user_input_2 = "Também estou com tosse leve."
+user_input_2 = "Agora também estou com dor leve no corpo."
 
-messages.append({
-    "role": "user",
-    "content": user_input_2
-})
+messages.append({"role": "user", "content": user_input_2})
 
 response_2 = client.chat.completions.create(
     model="gpt-4o-mini",
     messages=messages
 )
 
-assistant_message_2 = response_2.choices[0].message
-
-messages.append(assistant_message_2)
-
-print(assistant_message_2.content)
-
+print(response_2.choices[0].message.content)
 
 
 
